@@ -18,6 +18,7 @@ export class MemberListComponent implements OnInit {
   userParams: UserParams;
   user: User;
   genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}];
+  cityList:string[]=[];
 
   constructor(private memberService: MembersService) { 
     this.userParams = this.memberService.getUserParams();
@@ -27,12 +28,27 @@ export class MemberListComponent implements OnInit {
     this.loadMembers();
   }
 
+  // loadMembers() {
+  //   this,this.memberService.setUserParams(this.userParams);
+  //   this.memberService.getMembers(this.userParams).subscribe(response => {
+  //     this.members = response.result;
+  //     this.pagination = response.pagination;
+  //   })
+  // }
+
   loadMembers() {
-    this,this.memberService.setUserParams(this.userParams);
+    this.memberService.setUserParams(this.userParams);
     this.memberService.getMembers(this.userParams).subscribe(response => {
       this.members = response.result;
+      // console.log(this.members);
+      this.members.forEach(member => {
+        if(!this.cityList.includes(member.city)){
+          this.cityList.push(member.city);
+        }
+      });
+      // console.log(this.cityList);
       this.pagination = response.pagination;
-    })
+    });
   }
 
   resetFilters(){

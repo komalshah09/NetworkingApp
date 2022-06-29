@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="col-4">
-        <div class="card">
+        <div class="card transparent">
             <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
                 class="card-img-top img-thumbnail">
             <div class="card-body">
@@ -29,7 +29,7 @@
                     <p>{{member.created | date: 'dd MMMM yyyy'}}</p>
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer transparent">
                 <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Save Changes</button>
             </div>
         </div>

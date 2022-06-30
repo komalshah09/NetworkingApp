@@ -9,3 +9,11 @@ img {
     display: inline;
     margin-right: 8px;
 }
+
+.navbar-brand, .navbar-nav  {
+    font-family: sans-serif;
+}
+
+.navbar-brand {
+    font-size: 25px;
+}

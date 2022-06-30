@@ -17,6 +17,10 @@
     position: relative;
 }
 
+.card-text, .card-title {
+    color: whitesmoke;
+}
+
 .member-icons {
     position: absolute;
     bottom: -30%;

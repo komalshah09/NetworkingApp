@@ -1,14 +1,14 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" routerLink='/' routerLinkActive="active">DevConn</a>
 
         <ul class="navbar-nav mr-auto">
             <ng-container *ngIf="accountService.currentUser$ | async">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink='/members' routerLinkActive="active">Matches</a>
+                    <a class="nav-link" routerLink='/members' routerLinkActive="active">Developers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink='/lists' routerLinkActive="active">Lists</a>
+                    <a class="nav-link" routerLink='/lists' routerLinkActive="active">My Lists</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink='/messages' routerLinkActive="active">Messages</a>
@@ -22,7 +22,7 @@
 
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
             <img class="rounded-circle" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
-            <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}} </a>
+            <a class="dropdown-toggle navbar-brand" style="font-weight: 300; font-size: 1rem" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}} </a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
                 <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
                 <div class="dropdown-divider"></div>
@@ -35,13 +35,13 @@
             <input 
                 name="username"
                 [(ngModel)]="model.username"
-                class="form-control mr-sm-2" 
+                class="form-control mr-sm-2 transparent" 
                 type="text" 
                 placeholder="Username">
             <input 
                 name="password"
                 [(ngModel)]="model.password"
-                class="form-control mr-sm-2" 
+                class="form-control mr-sm-2 transparent" 
                 type="password" 
                 placeholder="Password">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>

@@ -47,15 +47,13 @@ export class MemberListComponent implements OnInit {
       this.members.forEach(member => {
         if (!this.cityList.includes(member.city)) {
           this.cityList.push(member.city);
-        }
-        // if(!this.skills.includes(member.interests)){
-        //   this.skills.push(member.interests);
-        // }
+        }        
 
         //To Do: seed data in interests string must NOT have ',and' else parsing will not work
         member.interests.replace(/and/g, ",");
         
         //breaks he interests into single skills and psh it to the ordered list
+        //let pattern = new RegExp("\b(?!and\b)\w+"); 
         member.interests.split(',').forEach(skill=>{          
           if(!this.skills.includes(skill)){
             this.skills.push(skill);

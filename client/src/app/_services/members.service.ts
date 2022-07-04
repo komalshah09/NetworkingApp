@@ -20,25 +20,26 @@ export class MembersService {
   user: User;
   userParams: UserParams;
 
-  constructor(private http: HttpClient, private accountService: AccountService) { 
+  constructor(private http: HttpClient, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.userParams = new UserParams(user);
     })
   }
 
-getUserParams() {
-  return this.userParams;
-}
+  getUserParams() {
+    return this.userParams;
+  }
 
-setUserParams(params: UserParams) {
-  this.userParams = params;
-}
+  setUserParams(params: UserParams) {
+    //
+    this.userParams = params;
+  }
 
-resetUserParams() {
-  this.userParams = new UserParams(this.user);
-  return this.userParams;
-}
+  resetUserParams() {
+    this.userParams = new UserParams(this.user);
+    return this.userParams;
+  }
 
   getMembers(userParams: UserParams) {
     var response = this.memberCache.get(Object.values(userParams).join('-'));
@@ -53,6 +54,8 @@ resetUserParams() {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
     params = params.append('city', userParams.city);
+    params = params.append('interests', userParams.interests);
+    
 
     return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http)
       .pipe(map(response => {
@@ -64,11 +67,11 @@ resetUserParams() {
   getMember(username: string) {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
-      .find((member: Member) => member.username ===username);
+      .find((member: Member) => member.username === username);
 
-      if (member) {
-        return of(member);
-      }
+    if (member) {
+      return of(member);
+    }
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 

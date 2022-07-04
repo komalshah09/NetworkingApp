@@ -17,10 +17,11 @@ export class MemberListComponent implements OnInit {
   pagination: Pagination;
   userParams: UserParams;
   user: User;
-  genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}];
-  cityList:string[]=[];
+  genderList = [{ value: 'male', display: 'Males' }, { value: 'female', display: 'Females' }];
+  skills : string[] = [];
+  cityList: string[] = [];
 
-  constructor(private memberService: MembersService) { 
+  constructor(private memberService: MembersService) {
     this.userParams = this.memberService.getUserParams();
   }
 
@@ -40,18 +41,27 @@ export class MemberListComponent implements OnInit {
     this.memberService.setUserParams(this.userParams);
     this.memberService.getMembers(this.userParams).subscribe(response => {
       this.members = response.result;
-      // console.log(this.members);
+      // console.log(this.members);      
+      
       this.members.forEach(member => {
-        if(!this.cityList.includes(member.city)){
+        if (!this.cityList.includes(member.city)) {
           this.cityList.push(member.city);
         }
+        if(!this.skills.includes(member.interests)){
+          this.skills.push(member.interests);
+        }
+        // member.interests.split(',').forEach(skill=>{
+        //   if(!this.skills.includes(skill)){
+        //     this.skills.push(skill);
+        //   }
+        // })        
       });
       // console.log(this.cityList);
       this.pagination = response.pagination;
     });
   }
 
-  resetFilters(){
+  resetFilters() {
     this.userParams = this.memberService.resetUserParams();
     this.loadMembers();
   }

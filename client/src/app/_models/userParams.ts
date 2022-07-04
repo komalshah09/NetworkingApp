@@ -8,8 +8,13 @@ export class UserParams {
     pageSize = 6;
     orderBy= 'lastActive';
     city = "";
+    interests="";
+    
+    
 
     constructor(user: User) {
-        this.gender = user.gender === 'female' ? 'male' : 'female';
+        this.gender = user.gender === 'female' ? 'male' : 'female';    
+                  
+
     }
 }

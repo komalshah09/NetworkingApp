@@ -46,6 +46,12 @@ namespace API.Data
             if (!(userParams.City == ""))
                 query = query.Where(u => u.City == userParams.City);
 
+            //gets interests
+            if (!(userParams.Interests == "")){
+                query = query.Where(u=>u.Interests== userParams.Interests);
+            }           
+        
+
             query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
 
             query = userParams.OrderBy switch

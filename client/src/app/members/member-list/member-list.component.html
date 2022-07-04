@@ -37,6 +37,19 @@
                     </option>
                 </select>
             </div>
+            <div class="form-group px-2">
+                <strong><label>Skill</label></strong>
+                <select 
+                    name="skill" 
+                    style="width: 130px;" [(ngModel)]="userParams.interests"
+                    class="form-control text-dark ml-1 transparent">
+                    <option value="" disabled selected hidden>All</option>
+                    <option *ngFor="let skill of skills" [value]="skill">
+                        {{skill}}
+                    </option>
+                </select>
+            </div>
+            
 
             <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
             <button (click)="resetFilters()" class="btn btn-success ml-1" type="submit">Reset Filters</button>

@@ -20,6 +20,7 @@ export class MemberListComponent implements OnInit {
   genderList = [{ value: 'male', display: 'Males' }, { value: 'female', display: 'Females' }];
   skills : string[] = [];
   cityList: string[] = [];
+  
 
   constructor(private memberService: MembersService) {
     this.userParams = this.memberService.getUserParams();
@@ -51,12 +52,16 @@ export class MemberListComponent implements OnInit {
         //   this.skills.push(member.interests);
         // }
 
+        //To Do: seed data in interests string must NOT have ',and' else parsing will not work
+        member.interests.replace(/and/g, ",");
+        
         //breaks he interests into single skills and psh it to the ordered list
-        member.interests.split(',').forEach(skill=>{
+        member.interests.split(',').forEach(skill=>{          
           if(!this.skills.includes(skill)){
             this.skills.push(skill);
           }
-        })        
+        }) 
+        this.skills.sort();       
       });
       // console.log(this.cityList);
       this.pagination = response.pagination;

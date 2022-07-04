@@ -47,14 +47,16 @@ export class MemberListComponent implements OnInit {
         if (!this.cityList.includes(member.city)) {
           this.cityList.push(member.city);
         }
-        if(!this.skills.includes(member.interests)){
-          this.skills.push(member.interests);
-        }
-        // member.interests.split(',').forEach(skill=>{
-        //   if(!this.skills.includes(skill)){
-        //     this.skills.push(skill);
-        //   }
-        // })        
+        // if(!this.skills.includes(member.interests)){
+        //   this.skills.push(member.interests);
+        // }
+
+        //breaks he interests into single skills and psh it to the ordered list
+        member.interests.split(',').forEach(skill=>{
+          if(!this.skills.includes(skill)){
+            this.skills.push(skill);
+          }
+        })        
       });
       // console.log(this.cityList);
       this.pagination = response.pagination;

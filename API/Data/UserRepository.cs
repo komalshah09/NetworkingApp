@@ -48,7 +48,9 @@ namespace API.Data
 
             //gets interests
             if (!(userParams.Interests == "")){
-                query = query.Where(u=>u.Interests== userParams.Interests);
+                //checks if the selected skill is in the interests string in each record queried
+                query = query.Where(u=>u.Interests.Contains(userParams.Interests)); 
+                //query = query.Where(u=>u.Interests==userParams.Interests);
             }           
         
 

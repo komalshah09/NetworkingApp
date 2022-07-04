@@ -39,6 +39,10 @@ namespace API.Controllers
             if(string.IsNullOrEmpty(userParams.City))
                 userParams.City="";
 
+            if(string.IsNullOrEmpty(userParams.Interests))
+                userParams.Interests="";          
+            
+
             var users = await _unitOfWork.UserRepository.GetMembersAsync(userParams);
 
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize,

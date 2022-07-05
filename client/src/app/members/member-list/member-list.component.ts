@@ -50,16 +50,15 @@ export class MemberListComponent implements OnInit {
         }        
 
         //To Do: seed data in interests string must NOT have ',and' else parsing will not work
-        member.interests.replace(/and/g, ",");
-        
-        //breaks he interests into single skills and psh it to the ordered list
-        //let pattern = new RegExp("\b(?!and\b)\w+"); 
-        member.interests.split(',').forEach(skill=>{          
-          if(!this.skills.includes(skill)){
-            this.skills.push(skill);
-          }
-        }) 
-        this.skills.sort();       
+        if (member.interests !== null) {
+          member.interests.replace(/and/g, ",");
+          member.interests.split(',').forEach(skill=>{          
+            if(!this.skills.includes(skill)){
+              this.skills.push(skill);
+            }
+          }) 
+          this.skills.sort();
+        }
       });
       // console.log(this.cityList);
       this.pagination = response.pagination;

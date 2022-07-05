@@ -30,7 +30,7 @@
                 <select 
                     name="city" 
                     style="width: 130px;" [(ngModel)]="userParams.city" 
-                    class="form-control text-dark ml-1 transparent">
+                    class="form-control ml-1 transparent">
                     <option value="" disabled selected hidden>City</option>
                     <option *ngFor="let city of cityList" [value]="city">
                         {{city}}
@@ -42,7 +42,7 @@
                 <select 
                     name="skill" 
                     style="width: 130px;" [(ngModel)]="userParams.interests"
-                    class="form-control text-dark ml-1 transparent">
+                    class="form-control ml-1 transparent">
                     <option value="" disabled selected hidden>All</option>
                     <option *ngFor="let skill of skills" [value]="skill">
                         {{skill}}
